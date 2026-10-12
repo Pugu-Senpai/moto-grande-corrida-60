@@ -33,18 +33,18 @@
 ],
 
     "eventos": [
-        {"nome": "Vácuo", "descricao": "Avança 3 casas", "casas": 3, "imagem": "./assets/img/cartas/eventos/evento_1_vacuo.png" },
-        {"nome": "Foto de revista", "descricao": "Nada acontece", "casas": 0, "imagem": "./assets/img/cartas/eventos/evento_2_foto_revista.png" },
-        {"nome": "Poeira na pista", "descricao": "Recua 1 casa", "casas": -1, "imagem": "./assets/img/cartas/eventos/evento_3_poeira_pista.png" },
-        {"nome": "Óleo na pista", "descricao": "Recua 2 casas", "casas": -2, "imagem": "./assets/img/cartas/eventos/evento_4_oleo_pista.png" },
-        {"nome": "Travagem brusca", "descricao": "Recua 3 casas", "casas": -3, "imagem": "./assets/img/cartas/eventos/evento_5_travagem_brusca.png" },
-        {"nome": "Público em delírio", "descricao": "Avança 1 casa", "casas": 1, "imagem": "./assets/img/cartas/eventos/evento_6_motor_afinado.png" },
-        {"nome": "Motor afinado", "descricao": "Avança 2 casas", "casas": 2, "imagem": "./assets/img/cartas/eventos/evento_7_publico_delirio.png" }
+        {"nome": "Vácuo", "descricao": "Avança 3 casas", "casas": 3, "som": "acelaracao", "imagem": "./assets/img/cartas/eventos/evento_1_vacuo.png" },
+        {"nome": "Foto de revista", "descricao": "Nada acontece", "casas": 0, "som": "camara", "imagem": "./assets/img/cartas/eventos/evento_2_foto_revista.png" },
+        {"nome": "Poeira na pista", "descricao": "Recua 1 casa", "casas": -1, "som": "travagem", "imagem": "./assets/img/cartas/eventos/evento_3_poeira_pista.png" },
+        {"nome": "Óleo na pista", "descricao": "Recua 2 casas", "casas": -2, "som": "travagem", "imagem": "./assets/img/cartas/eventos/evento_4_oleo_pista.png" },
+        {"nome": "Travagem brusca", "descricao": "Recua 3 casas", "casas": -3, "som": "travagem", "imagem": "./assets/img/cartas/eventos/evento_5_travagem_brusca.png" },
+        {"nome": "Público em delírio", "descricao": "Avança 1 casa", "casas": 1, "som": "publico", "imagem": "./assets/img/cartas/eventos/evento_7_publico_delirio.png" },
+        {"nome": "Motor afinado", "descricao": "Avança 2 casas", "casas": 2, "som": "dale", "imagem": "./assets/img/cartas/eventos/evento_6_motor_afinado.png" }
     ],
 
     "curvas": {
         "normal": { "nome": "Curva Normal", "descricao": "Continua o movimento", "imagem": "./assets/img/cartas/curvas/curva_1_normal.png" },
-        "perfeito": { "nome": "Curva Perfeita", "descricao": "Continua e não precisa de lançar dado nas próximas curvas desse turno", "imagem": "./assets/img/cartas/curvas/curva_2_perfeito.png" },
-        "despiste": { "nome": "Despiste", "descricao": "Para na curva e recua 2 casas a partir da curva", "imagem": "./assets/img/cartas/curvas/curva_3_despiste.png" }
+        "perfeito": { "nome": "Curva Perfeita", "descricao": "Continua e não precisa de lançar dado nas próximas curvas desse turno", "som": "acelaracao", "imagem": "./assets/img/cartas/curvas/curva_2_perfeito.png" },
+        "despiste": { "nome": "Despiste", "descricao": "Para na curva e recua 2 casas a partir da curva", "som": "travagem", "imagem": "./assets/img/cartas/curvas/curva_3_despiste.png" }
     }
 }

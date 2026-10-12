@@ -3,6 +3,7 @@
     --cor-titulo: var(--vermelho);
     --cor-titulo-escuro: var(--vermelho-escuro);
     --verde: #829670;
+    --verde-escuro: #445f2c;
     --vermelho: #CC513B;
     --vermelho-escuro: #8E2C25;
     --creme-claro: #F4E7C3;
@@ -64,23 +65,77 @@ body {
 
 [hidden] {display: none !important;}
 
+/* LOADING */
+.ecra-loading {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+    background-color: var(--cinza-carvao);
+    color: var(--creme-claro);
+    transition: opacity 0.5s ease-out;
+}
+
+.ecra-loading.a-sair {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-titulo {
+    width: min(80vw, 40rem);
+}
+
+.loading-pista {
+    position: relative;
+    width: min(70vw, 30rem);
+    height: 4rem;
+    border-bottom: 4px dashed var(--areia-claro);
+    overflow: hidden;
+}
+
+.loading-pista .mota {
+    position: absolute;
+    bottom: 0.2rem;
+    left: -6rem;
+    width: 6rem;
+    aspect-ratio: 2752 / 1536;
+    animation: mota-a-andar 1.6s linear infinite;
+}
+
+@keyframes mota-a-andar {
+    to {
+        left: 100%;
+    }
+}
+
+.loading-texto {
+    margin: 0;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+}
+
 /* TÍTULOS */
 h1 {
-  font-family: "Bebas Neue", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 h2 {
-  font-family: "Kaushan Script", cursive;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Kaushan Script", cursive;
+    font-weight: 400;
+    font-style: normal;
 }
 
 h3 {
-  font-family: "Bebas Neue", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 
@@ -834,6 +889,402 @@ select:focus-visible, input[type="radio"]:focus-visible + label {
     max-width: 26rem;
 }
 
+/* SOM */
+.controlo-som {
+    display: grid;
+    grid-template-columns: auto auto 1fr 3.5rem;
+    align-items: center;
+    gap: 0.75rem;
+    margin-block: 1rem;
+    font-size: 1.2rem;
+}
+
+.btn-icone {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    aspect-ratio: 1;
+    padding: 0;
+    border: 0.2rem solid var(--cinza-carvao);
+    border-radius: 50%;
+    background-color: var(--vermelho);
+    color: var(--tinta-preto);
+    cursor: pointer;
+}
+
+.btn-icone svg {
+    width: 60%;
+    height: 60%;
+}
+
+.btn-icone:hover,
+.btn-icone:focus-visible {
+    background-color: var(--vermelho-escuro);
+    color: var(--creme-claro);
+}
+
+.btn-icone:focus-visible {
+    outline: 0.2rem solid var(--mostarda);
+    outline-offset: 1.5px;
+}
+
+.btn-icone:active {
+    transform: scale(0.95);
+}
+
+/* troca do ícone */
+.btn-mute .cruz {
+    display: none;
+}
+
+.btn-mute[aria-pressed="true"] .ondas {
+    display: none;
+}
+
+.btn-mute[aria-pressed="true"] .cruz {
+    display: inline;
+}
+
+/* slider apagado quando está silenciado */
+.btn-mute[aria-pressed="true"] + input[type="range"] {
+    opacity: 0.45;
+}
+
+.controlo-som input[type="range"] {
+    width: 100%;
+    accent-color: var(--vermelho);
+    cursor: pointer;
+}
+
+.controlo-som output {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.4rem;
+    text-align: right;
+}
+
+/* slider apagado quando está silenciado */
+#btn-mute[aria-pressed="true"] + #volume {
+    opacity: 0.45;
+}
+
+#volume {
+    width: 100%;
+    accent-color: var(--vermelho);
+    cursor: pointer;
+}
+
+#valor-volume {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.4rem;
+    text-align: right;
+}
+
+/* JANELA REGRAS */
+#regras {
+    max-width: 36rem;
+}
+
+.grupo-regras p {
+    margin: 0 0 0.75rem;
+}
+
+.grupo-regras p:last-child {
+    margin-bottom: 0;
+}
+
+.grupo-regras h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* quadradinho da cor da casa */
+.amostra {
+    display: inline-block;
+    width: 1.4rem;
+    aspect-ratio: 10 / 7;
+    border: 2px solid var(--cinza-carvao);
+    border-radius: 0.4rem;
+}
+
+.amostra-curva {
+    background-color: var(--vermelho);
+}
+
+.amostra-evento {
+    background-color: var(--mostarda);
+}
+
+/* passos numerados */
+.passos {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: passo;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.passos li {
+    counter-increment: passo;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.passos li::before {
+    content: counter(passo);
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 1.8rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: var(--vermelho);
+    color: var(--tinta-preto);
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.2rem;
+}
+
+/* tabelas */
+.tabela {
+    border: 1px solid var(--cor-contorno-claro);
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+
+#regras th,
+#regras td {
+    border: none;
+    border-bottom: 1px solid var(--cor-contorno-claro);
+    vertical-align: middle;
+}
+
+#regras tbody tr:last-child td {
+    border-bottom: none;
+}
+
+#regras tbody tr:nth-child(even) {
+    background-color: var(--cor-fundo);
+}
+
+#regras td:first-child {
+    white-space: nowrap;
+}
+
+/* dado pequeno */
+.dado-mini {
+    display: inline-grid;
+    place-items: center;
+    width: 1.7rem;
+    aspect-ratio: 1;
+    border: 2px solid var(--cor-contorno);
+    border-radius: 0.4rem;
+    background-color: var(--cor-fundo);
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.2rem;
+}
+
+/* etiquetas de efeito */
+.efeito {
+    display: inline-block;
+    min-width: 2.5rem;
+    margin-right: 0.4rem;
+    padding: 0.05rem 0.5rem;
+    border-radius: 0.5rem;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.efeito-bom {
+    background-color: var(--verde-escuro);
+    color: var(--creme-claro);
+}
+
+.efeito-neutro {
+    background-color: var(--areia-claro);
+    color: var(--tinta-preto);
+}
+
+.efeito-mau {
+    background-color: var(--vermelho-escuro);
+    color: var(--creme-claro);
+}
+
+.lista-simples {
+    margin: 0;
+    padding-left: 1.2rem;
+}
+
+/* JANELA OPÇÕES */
+#opcoes {
+    max-width: 32rem;
+}
+
+.grupo-opcoes,
+.grupo-regras {
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-contorno-claro);
+    border-radius: 1rem;
+}
+
+.grupo-opcoes h3,
+.grupo-regras h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    color: var(--cor-titulo-escuro);
+}
+
+
+.linha-opcao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+}
+
+.linha-opcao p {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+#opcoes .linha-opcao .botao {
+    min-width: 12rem;
+    font-size: 1.15rem;
+}
+
+.grupo-perigo {
+    border-left: 0.4rem solid var(--vermelho-escuro);
+}
+
+#mensagem-opcoes {
+    margin: 0.5rem 0 0;
+    font-weight: bold;
+    color: var(--cor-titulo-escuro);
+}
+
+#mensagem-opcoes:empty {
+    display: none;
+}
+
+/* JANELA VITÓRIA */
+#vitoria {
+    max-width: 30rem;
+}
+
+#vitoria .janela-conteudo {
+    position: relative;
+    text-align: center;
+}
+
+#vitoria h2 {
+    margin-bottom: 0.5rem;
+}
+
+#vitoria form {
+    text-align: center;
+}
+
+/* imagem com brilho */
+.vitoria-imagem {
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+.vitoria-imagem::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgb(212 162 58 / 0.55), transparent 65%);
+    animation: brilhar 1.8s ease-in-out infinite alternate;
+}
+
+.vitoria-imagem img {
+    position: relative;
+    display: block;
+    width: min(16rem, 65%);
+    height: auto;
+    animation: entrar 0.7s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+
+@keyframes brilhar {
+    from { transform: scale(0.9); opacity: 0.7; }
+    to   { transform: scale(1.05); opacity: 1; }
+}
+
+@keyframes entrar {
+    from { transform: scale(0.3) rotate(-8deg); opacity: 0; }
+}
+
+/* cartão do campeão */
+.vitoria-cartao {
+    display: grid;
+    justify-items: center;
+    gap: 0.25rem;
+    max-width: 22rem;
+    margin: 1rem auto;
+    padding: 0.75rem 1rem;
+    background-color: var(--cinza-carvao);
+    color: var(--creme-claro);
+    border: 3px solid var(--ouro);
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgb(31 29 25 / 0.45);
+}
+
+#vitoria-mota {
+    position: relative;
+    display: block;
+    width: 5rem;
+    aspect-ratio: 2752 / 1536;
+}
+
+#texto-vitoria {
+    margin: 0;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 2.6rem;
+    letter-spacing: 2px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--ouro);
+}
+
+#vitoria-detalhe {
+    margin: 0;
+    font-size: 1.05rem;
+    opacity: 0.9;
+}
+
+/* confetis */
+#confetis {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+#confetis span {
+    position: absolute;
+    top: -1rem;
+    width: 0.5rem;
+    height: 0.9rem;
+    border-radius: 2px;
+    animation-name: cair;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes cair {
+    to { transform: translateY(45rem) rotate(540deg); }
+}
+
 /* ANIMAÇÃO PULSE */
 .pulsar {
     font-size: 8rem;
@@ -842,7 +1293,7 @@ select:focus-visible, input[type="radio"]:focus-visible + label {
 }
 
 @keyframes piscar-cor {
-to { color: var(--vermelho); }
+    to { color: var(--vermelho); }
 }
 
 @media (orientation: portrait) and (max-width: 50rem) {
@@ -872,6 +1323,20 @@ to { color: var(--vermelho); }
     }
 
     #vez-jogador strong {
-    animation: none;
+        animation: none;
+    }
+
+    .loading-pista .mota {
+        animation: none;
+        left: calc(50% - 3rem);
+    }
+
+    #confetis {
+    display: none;
+    }
+
+    .vitoria-imagem::before,
+    .vitoria-imagem img {
+        animation: none;
     }
 }
