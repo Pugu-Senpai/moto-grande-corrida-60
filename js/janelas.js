@@ -4,7 +4,7 @@ const avisoTitulo = document.getElementById("aviso-titulo");
 const avisoImagem = document.getElementById("aviso-imagem");
 const avisoTexto = document.getElementById("aviso-texto");
 
-const TEMPO_AVISO = 3000;
+const TEMPO_AVISO = 2500;
 
 export function abrirJanela(id) {
     const elemento = document.getElementById(id);
@@ -24,9 +24,9 @@ dialogs.forEach((d) => {
 });
 
 export function mostrarAviso(info) {
+    avisoImagem.src = info.imagem;
     avisoTitulo.textContent = info.nome;
     avisoTexto.textContent = info.descricao;
-    avisoImagem.src = info.imagem;
     aviso.showModal();
     return new Promise((resolve) => {
         const temporizador = setTimeout(() => aviso.close(), TEMPO_AVISO);

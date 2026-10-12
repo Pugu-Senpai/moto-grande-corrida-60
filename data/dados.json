@@ -8,41 +8,43 @@
         {"numero": 6, "nome": "Países Baixos", "cor": "#E36414", "placa": "#FFFFFF", "corNumero": "#000000"}
     ],
 
-    "casas": [
-    { "numero": 0,  "tipo": "META", "x": 50.0, "y": 89.2 },
-    { "numero": 1,  "tipo": "B",    "x": 61.5, "y": 89.2 },
-    { "numero": 2,  "tipo": "B",    "x": 73.0, "y": 89.2 },
-    { "numero": 3,  "tipo": "C",    "x": 85.1, "y": 86.3 },
-    { "numero": 4,  "tipo": "E",    "x": 80.4, "y": 70.6 },
-    { "numero": 5,  "tipo": "B",    "x": 73.0, "y": 59.2 },
-    { "numero": 6,  "tipo": "C",    "x": 63.8, "y": 45.9 },
-    { "numero": 7,  "tipo": "C",    "x": 54.7, "y": 51.0 },
-    { "numero": 8,  "tipo": "B",    "x": 48.6, "y": 39.2 },
-    { "numero": 9,  "tipo": "E",    "x": 42.6, "y": 27.5 },
-    { "numero": 10, "tipo": "B",    "x": 35.8, "y": 16.1 },
-    { "numero": 11, "tipo": "C",    "x": 27.7, "y": 10.8 },
-    { "numero": 12, "tipo": "B",    "x": 24.3, "y": 23.5 },
-    { "numero": 13, "tipo": "E",    "x": 21.6, "y": 34.7 },
-    { "numero": 14, "tipo": "B",    "x": 18.9, "y": 45.9 },
-    { "numero": 15, "tipo": "B",    "x": 16.2, "y": 57.1 },
-    { "numero": 16, "tipo": "B",    "x": 13.5, "y": 68.2 },
-    { "numero": 17, "tipo": "E",    "x": 11.5, "y": 79.4 },
-    { "numero": 18, "tipo": "C",    "x": 16.2, "y": 89.2 },
-    { "numero": 19, "tipo": "E",    "x": 27.3, "y": 89.2 },
-    { "numero": 20, "tipo": "B",    "x": 38.6, "y": 89.2 }
-    ],
+"casas": [
+    { "numero": 0,  "tipo": "META", "x": 50.0, "y": 85.9, "angulo": 0 },
+    { "numero": 1,  "tipo": "B",    "x": 61.0, "y": 85.9, "angulo": 0 },
+    { "numero": 2,  "tipo": "B",    "x": 71.9, "y": 85.8, "angulo": 0 },
+    { "numero": 3,  "tipo": "E",    "x": 82.8, "y": 85.7, "angulo": 0 },
+    { "numero": 4,  "tipo": "C",    "x": 91.0, "y": 78.5, "angulo": -86 },
+    { "numero": 5,  "tipo": "B",    "x": 85.4, "y": 66.5, "angulo": 46 },
+    { "numero": 6,  "tipo": "E",    "x": 77.7, "y": 56.0, "angulo": 45 },
+    { "numero": 7,  "tipo": "C",    "x": 69.5, "y": 46.6, "angulo": 17 },
+    { "numero": 8,  "tipo": "C",    "x": 59.7, "y": 51.5, "angulo": -21 },
+    { "numero": 9,  "tipo": "B",    "x": 50.7, "y": 45.9, "angulo": 54 },
+    { "numero": 10, "tipo": "E",    "x": 45.0, "y": 33.4, "angulo": 61},
+    { "numero": 11, "tipo": "B",    "x": 39.6, "y": 20.6, "angulo": 59 },
+    { "numero": 12, "tipo": "C",    "x": 30.7, "y": 13.8, "angulo": -8 },
+    { "numero": 13, "tipo": "E",    "x": 23.8, "y": 24.0, "angulo": -71 },
+    { "numero": 14, "tipo": "B",    "x": 20.2, "y": 37.9, "angulo": -70 },
+    { "numero": 15, "tipo": "B",    "x": 16.4, "y": 51.6, "angulo": -68 },
+    { "numero": 16, "tipo": "E",    "x": 12.2, "y": 65.1, "angulo": -67 },
+    { "numero": 17, "tipo": "C",    "x": 9.0,  "y": 79.0, "angulo": -84 },
+    { "numero": 18, "tipo": "B",    "x": 17.2, "y": 85.9, "angulo": 1 },
+    { "numero": 19, "tipo": "E",    "x": 28.1, "y": 85.9, "angulo": 0 },
+    { "numero": 20, "tipo": "B",    "x": 39.1, "y": 85.9, "angulo": 0 }
+],
 
     "eventos": [
-        {"nome": "Vácuo", "descricao": "Avança 3 casas", "casas": 3, "imagem": "./assets/img/cartas/eventos/evento_1_vacuo.jpg" },
-        {"nome": "Foto de revista", "descricao": "Nada acontece", "casas": 0, "imagem": "./assets/img/cartas/eventos/evento_2_foto_revista.jpg" },
-        {"nome": "Poeira na pista", "descricao": "Recua 1 casa", "casas": -1, "imagem": "./assets/img/cartas/eventos/evento_3_poeira_pista.jpg" },
-        {"nome": "Óleo na pista", "descricao": "Recua 2 casas", "casas": -2, "imagem": "./assets/img/cartas/eventos/evento_4_oleo_pista.jpg" },
-        {"nome": "Travagem brusca", "descricao": "Recua 3 casas", "casas": -3, "imagem": "./assets/img/cartas/eventos/evento_5_travagem_brusca.jpg" }
+        {"nome": "Vácuo", "descricao": "Avança 3 casas", "casas": 3, "imagem": "./assets/img/cartas/eventos/evento_1_vacuo.png" },
+        {"nome": "Foto de revista", "descricao": "Nada acontece", "casas": 0, "imagem": "./assets/img/cartas/eventos/evento_2_foto_revista.png" },
+        {"nome": "Poeira na pista", "descricao": "Recua 1 casa", "casas": -1, "imagem": "./assets/img/cartas/eventos/evento_3_poeira_pista.png" },
+        {"nome": "Óleo na pista", "descricao": "Recua 2 casas", "casas": -2, "imagem": "./assets/img/cartas/eventos/evento_4_oleo_pista.png" },
+        {"nome": "Travagem brusca", "descricao": "Recua 3 casas", "casas": -3, "imagem": "./assets/img/cartas/eventos/evento_5_travagem_brusca.png" },
+        {"nome": "Público em delírio", "descricao": "Avança 1 casa", "casas": 1, "imagem": "./assets/img/cartas/eventos/evento_6_motor_afinado.png" },
+        {"nome": "Motor afinado", "descricao": "Avança 2 casas", "casas": 2, "imagem": "./assets/img/cartas/eventos/evento_7_publico_delirio.png" }
     ],
 
     "curvas": {
-        "normal": { "nome": "Curva Normal", "descricao": "Continua o movimento", "imagem": "./assets/img/cartas/curvas/curva_1_normal.jpg" },
-        "perfeito": { "nome": "Curva Perfeita", "descricao": "Continua e não precisa de lançar dado nas próximas curvas desse turno", "imagem": "./assets/img/cartas/curvas/curva_2_perfeito.jpg" },
-        "despiste": { "nome": "Despiste", "descricao": "Para na curva e recua 2 casas a partir da curva", "imagem": "./assets/img/cartas/curvas/curva_3_despiste.jpg" }
+        "normal": { "nome": "Curva Normal", "descricao": "Continua o movimento", "imagem": "./assets/img/cartas/curvas/curva_1_normal.png" },
+        "perfeito": { "nome": "Curva Perfeita", "descricao": "Continua e não precisa de lançar dado nas próximas curvas desse turno", "imagem": "./assets/img/cartas/curvas/curva_2_perfeito.png" },
+        "despiste": { "nome": "Despiste", "descricao": "Para na curva e recua 2 casas a partir da curva", "imagem": "./assets/img/cartas/curvas/curva_3_despiste.png" }
     }
 }

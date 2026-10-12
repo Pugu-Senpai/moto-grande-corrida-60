@@ -1,7 +1,7 @@
 const pista = document.getElementById("pista");
 const DESVIOS = [
-    [-3, -2.5], [0, -2.5], [3, -2.5],
-    [-3,  2.5], [0,  2.5], [3,  2.5]
+    [-5, -3], [0, -3], [5, -3],
+    [-5,  3], [0,  3], [5,  3]
 ];
 
 function classeDaCasa(tipo) {
@@ -29,6 +29,7 @@ export function desenharPista(casas) {
         divisao.textContent = c.numero;
         divisao.style.left = `${c.x}%`;
         divisao.style.top = `${c.y}%`;
+        divisao.style.setProperty("--angulo", `${c.angulo}deg`);
         pista.append(divisao);
     });
 }
@@ -41,11 +42,9 @@ export function desenharPecas(pilotos, casas) {
         const desvioX = desvio[0];
         const desvioY = desvio[1];
         const peca = document.createElement("div");
-        peca.classList.add("peca");
-        peca.textContent = `${piloto.numero}`;
-        peca.style.backgroundColor = `${piloto.cor}`;
-        peca.style.borderColor = `${piloto.placa}`;
-        peca.style.color = `${piloto.corNumero}`;
+        peca.classList.add("peca", "mota");
+        peca.style.setProperty("--cor-mota", piloto.cor);
+        peca.style.setProperty("--cor-placa", piloto.placa);
         peca.style.left = `${casa.x + desvioX}%`;
         peca.style.top = `${casa.y + desvioY}%`;
         pista.append(peca);
