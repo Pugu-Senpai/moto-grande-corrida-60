@@ -6,17 +6,19 @@ import { iniciarCorrida, obterPilotos, obterPilotoDaVez, passarTurno,
     avancarPilotoDaVez, TOTAL_VOLTAS, pilotoDaVezVenceu, obterEstado, 
     restaurarCorrida, recuarPilotoDaVez } from "./jogo.js";
 import { desenharPista, desenharPecas } from "./pista.js";
-import { lancarDado, esperar } from "./utils.js";
+import { lancarDado, esperar, precarregarImagem } from "./utils.js";
 import { desenharPosicoes } from "./painel.js";
 import { lerVitorias, guardarVitorias, lerCorrida, guardarCorrida, 
     apagarCorrida, apagarVitorias } from "./armazenamento.js";
 import { desenharClassificacao } from "./classificacao.js";
 import { tirarCarta } from "./cartas.js";
 import { alternarTema, aplicarTemaGuardado } from "./tema.js";
+import { definirVolume, alternarMute, aplicarSomGuardado, tocarMusicaMenu, pararMusicaMenu, tocarEfeito } from "./som.js";
+import { mostrarVitoria } from "./vitoria.js";
 
 aplicarTemaGuardado();
+aplicarSomGuardado();
 
-const dados = await carregarDados();
 const CASA_DESPISTE = 2;
 const RECUAR = 1;
 const PAUSA_ANTES_AVISO = 800;
@@ -24,10 +26,19 @@ const PAUSA_MOVIMENTO = 300;
 const PAUSA_DADO = 900;
 const VEZES_DADO = 10;
 const PAUSA_INICIAL_DADO = 30;
-const AUMENTO_PAUSA = 20;
+const AUMENTO_PAUSA = 10;
 const ANGULO_LADO = 12;
 const TROCAR_LADO = -1;
 const MOVIMENTO_REDUZIDO = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const TEMPO_MINIMO_LOADING = 1500;
+const IMAGENS_JOGO = [
+    "./assets/img/pista.svg",
+    "./assets/img/fundo_pista.jpg",
+    "./assets/img/moto/moto_base.png",
+    "./assets/img/moto/moto_cor.svg",
+    "./assets/img/moto/moto_numero_cor.svg",
+    "./assets/img/trofeu.png",
+];
 
 const btnIniciar = document.getElementById("btn-iniciar-jogo");
 const btnsJanela = document.querySelectorAll("[data-janela]");
@@ -36,6 +47,8 @@ const btnDado = document.getElementById("btn-dado");
 const btnSair = document.getElementById("btn-sair");
 const btnLimparClassificacao = document.getElementById("btn-limpar-classificacao");
 const btnTema = document.getElementById("btn-tema");
+const btnMute = document.getElementById("btn-mute");
+const sliderVolume = document.getElementById("volume");
 
 const radioJogadores = document.querySelectorAll('input[name="num-jogadores"]');
 const paragrafoErro = document.getElementById("erro-formulario");
@@ -50,7 +63,16 @@ const mensagem = document.getElementById("mensagem");
 const mensagemOpcoes = document.getElementById("mensagem-opcoes");
 const janelaDadoCurva = document.getElementById("janela-dado-curva");
 const caixaDadoCurva = document.getElementById("dado-curva");
+const ecraLoading = document.getElementById("ecra-loading");
 
+const [dados] = await Promise.all([
+    carregarDados(),
+    esperar(TEMPO_MINIMO_LOADING),
+    ...IMAGENS_JOGO.map(precarregarImagem),
+]);
+
+ecraLoading.classList.add("a-sair");
+ecraLoading.addEventListener("transitionend", () => ecraLoading.remove(), { once: true });
 
 function mostrarVez() {
     const piloto = obterPilotoDaVez();
@@ -69,6 +91,7 @@ function mostrarVolta() {
 }
 
 function mostrarCorrida() {
+    pararMusicaMenu();
     btnDado.disabled = false;
     btnSair.disabled = false;
     numDado.textContent = "-";
@@ -90,11 +113,13 @@ async function recuarCasas(casas) {
     for (let i = 0; i < casas; i++) {
         recuarPilotoDaVez(RECUAR);
         desenharPecas(obterPilotos(), dados.casas);
+        tocarEfeito("mover");
         await esperar(PAUSA_MOVIMENTO);        
     }
 }
 
 async function animarDado(elementoDado, resultadoFinalDado) {
+    tocarEfeito("dado");
     let pausa = PAUSA_INICIAL_DADO;
     let lado = 1;
     const angulo = MOVIMENTO_REDUZIDO ? 0 : ANGULO_LADO;
@@ -114,7 +139,7 @@ async function animarDado(elementoDado, resultadoFinalDado) {
 async function lancarDadoCurva() {
     const resultadoDadoCurva = lancarDado();
     caixaDadoCurva.textContent = "-";
-    janelaDadoCurva.showModal();
+    abrirJanela("janela-dado-curva");
     await esperar(PAUSA_DADO);
     await animarDado(caixaDadoCurva, resultadoDadoCurva);
     await esperar(PAUSA_DADO);
@@ -171,6 +196,7 @@ btnDado.addEventListener("click", async () => {
     for (let i = 1; i <= resultadoDado; i++) {
         avancarPilotoDaVez(dados.casas.length);
         desenharPecas(obterPilotos(), dados.casas);
+        tocarEfeito("mover");
         if (pilotoDaVezVenceu()) {
             break;
         }
@@ -206,6 +232,7 @@ btnDado.addEventListener("click", async () => {
             for (let i = 0; i < carta.casas; i++) {
                 avancarPilotoDaVez(dados.casas.length);
                 desenharPecas(obterPilotos(), dados.casas);
+                tocarEfeito("mover");
                 if (pilotoDaVezVenceu()) {
                     break;
                 }
@@ -219,18 +246,19 @@ btnDado.addEventListener("click", async () => {
 
     //VENCER CORRIDA
     if (pilotoDaVezVenceu()) {
-        const vencedor = obterPilotoDaVez();        
-        textoVitoria.textContent = vencedor.nome;
+        const vencedor = obterPilotoDaVez();
         const infoVitoria = {
             nome: vencedor.nome,
             mota: vencedor.mota,
             data: new Date().toLocaleDateString("pt-PT"),
         };
         guardarVitorias(infoVitoria);
+        mostrarVitoria(vencedor);
         apagarCorrida();
         abrirJanela("vitoria");
+        tocarEfeito("vitoria");
         return;
-    } 
+    }
     passarTurno();
     guardarCorrida(obterEstado());
     mostrarVez();
@@ -241,12 +269,14 @@ btnDado.addEventListener("click", async () => {
 
 janelaVitoria.addEventListener("close", () => {
     trocarEcras("ecra-inicial");
+    tocarMusicaMenu();
 });
 
 btnSair.addEventListener("click", () => {
     if (confirm("Queres sair da corrida?")) {
         apagarCorrida();
         trocarEcras("ecra-inicial");
+        tocarMusicaMenu();
     }
 });
 
@@ -265,8 +295,29 @@ janelaOpcoes.addEventListener("close", () => {
     mensagemOpcoes.textContent = "";
 });
 
+document.querySelectorAll(".controlo-som").forEach((controlo) => {
+    const canal = controlo.dataset.canal;
+    const slider = controlo.querySelector('input[type="range"]');
+    const botao = controlo.querySelector(".btn-mute");
+
+    slider.addEventListener("input", () => {
+        definirVolume(canal, Number(slider.value));
+    });
+    botao.addEventListener("click", () => {
+        alternarMute(canal);
+    });
+});
+
+document.addEventListener("click", (evento) => {
+    if (evento.target.closest("button")) {
+        tocarEfeito("clique");
+    }
+});
+
 const corridaGuardada = lerCorrida();
 if (corridaGuardada) {
     restaurarCorrida(corridaGuardada);
     mostrarCorrida();
+} else {
+    tocarMusicaMenu();
 }

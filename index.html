@@ -123,94 +123,156 @@
     <dialog id="regras">
         <div class="janela-conteudo">
             <h2>Regras</h2>
-            <h3>Objetivo:</h3>
-            <p>Jogo de 2 a 6 pilotos. Ganha quem cruzar primeiro a meta no fim da 2.ª volta.</p>
-            <h3>O teu turno:</h3>
-            <ol>
-                <li>Lança o dado;</li>
-                <li>A tua mota avança esse número de casas;</li>
-                <li>Se passares ou parares numa curva, lanças o dado da curva;</li>
-                <li>Se parares numa casa de evento, tiras uma carta;</li>
-                <li>Passa a vez ao piloto seguinte.</li>
-            </ol>
-            <h3>Curvas (Casa Vermelha):</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th scope="col">Dado da curva</th>
-                        <th scope="col">Resultado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Despiste: paras e recuas 2 casas</td>
-                    </tr>
-                    <tr>
-                        <td>2 a 5</td>
-                        <td>Fazes a curva e continuas</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Curva Perfeita: não lanças mais dados de curva neste turno</td>
-                    </tr>
-                </tbody>
-            </table>
-            <h3>Evento (Casa Amarela):</h3>
-            <p>Só conta se parares na casa evento.</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th scope="col">Evento</th>
-                        <th scope="col">Resultado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Vácuo</td>
-                        <td>Avança 3 casas</td>
-                    </tr>
-                    <tr>
-                        <td>Foto de revista</td>
-                        <td>Nada acontece</td>
-                    </tr>
-                    <tr>
-                        <td>Poeira na pista</td>
-                        <td>Recua 1 casa</td>
-                    </tr>
-                    <tr>
-                        <td>Óleo na pista</td>
-                        <td>Recua 2 casas</td>
-                    </tr>
-                    <tr>
-                        <td>Travagem brusca</td>
-                        <td>Recua 3 casas</td>
-                    </tr>
-                    <tr>
-                        <td>Motor afinado</td>
-                        <td>Avança 2 casas</td>
-                    </tr>
-                    <tr>
-                        <td>Público em delírio</td>
-                        <td>Avança 1 casa</td>
-                    </tr>
-                </tbody>
-            </table>
-            <h3>Guardar e Classificação:</h3>
-            <p>A corrida fica guardada se recarregares a página</p>
-            <p>As vitórias ficam registadas na Classificação</p>
+
+            <section class="grupo-regras" aria-labelledby="regras-objetivo">
+                <h3 id="regras-objetivo">Objetivo</h3>
+                <p>Corrida de 2 a 6 pilotos. Ganha quem cruzar primeiro a meta no fim da <strong>2.ª volta</strong>.</p>
+            </section>
+
+            <section class="grupo-regras" aria-labelledby="regras-turno">
+                <h3 id="regras-turno">O teu turno</h3>
+                <ol class="passos">
+                    <li>Lança o dado.</li>
+                    <li>A tua mota avança esse número de casas.</li>
+                    <li>Se passares ou parares numa curva, lanças o dado da curva.</li>
+                    <li>Se parares numa casa de evento, tiras uma carta.</li>
+                    <li>Passa a vez ao piloto seguinte.</li>
+                </ol>
+            </section>
+
+            <section class="grupo-regras" aria-labelledby="regras-curvas">
+                <h3 id="regras-curvas">
+                    <span class="amostra amostra-curva" aria-hidden="true"></span>
+                    Curvas
+                </h3>
+                <p>Sempre que passas ou paras numa casa vermelha.</p>
+                <div class="tabela">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Dado</th>
+                                <th scope="col">Resultado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="dado-mini">1</span></td>
+                                <td><span class="efeito efeito-mau">Despiste</span> Paras e recuas 2 casas</td>
+                            </tr>
+                            <tr>
+                                <td><span class="dado-mini">2</span> a <span class="dado-mini">5</span></td>
+                                <td><span class="efeito efeito-neutro">Curva</span> Fazes a curva e continuas</td>
+                            </tr>
+                            <tr>
+                                <td><span class="dado-mini">6</span></td>
+                                <td><span class="efeito efeito-bom">Perfeita</span> Não lanças mais dados de curva neste turno</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="grupo-regras" aria-labelledby="regras-eventos">
+                <h3 id="regras-eventos">
+                    <span class="amostra amostra-evento" aria-hidden="true"></span>
+                    Eventos
+                </h3>
+                <p>Só contam se <strong>parares</strong> numa casa amarela. Tiras uma carta ao acaso.</p>
+                <div class="tabela">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Carta</th>
+                                <th scope="col">Efeito</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Vácuo</td><td><span class="efeito efeito-bom">+3</span> Avança 3 casas</td></tr>
+                            <tr><td>Motor afinado</td><td><span class="efeito efeito-bom">+2</span> Avança 2 casas</td></tr>
+                            <tr><td>Público em delírio</td><td><span class="efeito efeito-bom">+1</span> Avança 1 casa</td></tr>
+                            <tr><td>Foto de revista</td><td><span class="efeito efeito-neutro">0</span> Nada acontece</td></tr>
+                            <tr><td>Poeira na pista</td><td><span class="efeito efeito-mau">-1</span> Recua 1 casa</td></tr>
+                            <tr><td>Óleo na pista</td><td><span class="efeito efeito-mau">-2</span> Recua 2 casas</td></tr>
+                            <tr><td>Travagem brusca</td><td><span class="efeito efeito-mau">-3</span> Recua 3 casas</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="grupo-regras" aria-labelledby="regras-guardar">
+                <h3 id="regras-guardar">Guardar e classificação</h3>
+                <ul class="lista-simples">
+                    <li>A corrida fica guardada se recarregares a página.</li>
+                    <li>As vitórias ficam registadas na Classificação.</li>
+                </ul>
+            </section>
+
             <form method="dialog">
                 <button type="submit" class="btn-fechar botao">Fechar</button>
-            </form> 
-        </div>  
+            </form>
+        </div>
     </dialog>
 
     <dialog id="opcoes">
         <div class="janela-conteudo">
             <h2>Opções</h2>
-            <button id="btn-limpar-classificacao" type="button" class="botao">Limpar classificação</button>
-            <button id="btn-tema" type="button" class="botao" aria-pressed="false">Modo escuro</button>
-            <p id="mensagem-opcoes" aria-live="polite"></p>
+
+            <section class="grupo-opcoes" aria-labelledby="titulo-som">
+                <h3 id="titulo-som">Som</h3>
+                <div class="controlo-som" data-canal="musica">
+                    <label for="volume-musica">Música</label>
+                    <button type="button" class="btn-icone btn-mute" aria-pressed="false" aria-label="Silenciar música">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/>
+                            <g class="ondas" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                <path d="M16 9.5a3.5 3.5 0 0 1 0 5"/>
+                                <path d="M18.5 7a7 7 0 0 1 0 10"/>
+                            </g>
+                            <g class="cruz" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                <path d="M16 9l5 6M21 9l-5 6"/>
+                            </g>
+                        </svg>
+                    </button>
+                    <input type="range" id="volume-musica" min="0" max="100" step="5" value="50">
+                    <output for="volume-musica">50%</output>
+                </div>
+
+                <div class="controlo-som" data-canal="efeitos">
+                    <label for="volume-efeitos">Efeitos</label>
+                    <button type="button" class="btn-icone btn-mute" aria-pressed="false" aria-label="Silenciar efeitos">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/>
+                            <g class="ondas" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                <path d="M16 9.5a3.5 3.5 0 0 1 0 5"/>
+                                <path d="M18.5 7a7 7 0 0 1 0 10"/>
+                            </g>
+                            <g class="cruz" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                <path d="M16 9l5 6M21 9l-5 6"/>
+                            </g>
+                        </svg>
+                    </button>
+                    <input type="range" id="volume-efeitos" min="0" max="100" step="5" value="80">
+                    <output for="volume-efeitos">80%</output>
+                </div>
+            </section>
+
+            <section class="grupo-opcoes" aria-labelledby="titulo-aparencia">
+                <h3 id="titulo-aparencia">Aparência</h3>
+                <div class="linha-opcao">
+                    <p>Tema do jogo</p>
+                    <button id="btn-tema" type="button" class="botao" aria-pressed="false">Modo escuro</button>
+                </div>
+            </section>
+
+            <section class="grupo-opcoes grupo-perigo" aria-labelledby="titulo-dados">
+                <h3 id="titulo-dados">Dados</h3>
+                <div class="linha-opcao">
+                    <p>Apagar todas as vitórias guardadas</p>
+                    <button id="btn-limpar-classificacao" type="button" class="botao">Limpar classificação</button>
+                </div>
+                <p id="mensagem-opcoes" aria-live="polite"></p>
+            </section>
+
             <form method="dialog">
                 <button type="submit" class="btn-fechar botao">Fechar</button>
             </form>
@@ -219,8 +281,16 @@
 
     <dialog id="vitoria">
         <div class="janela-conteudo">
+            <div id="confetis" aria-hidden="true"></div>
             <h2>Vencedor</h2>
-            <p id="texto-vitoria"></p>
+            <div class="vitoria-imagem">
+                <img src="./assets/img/vitoria.png" alt="">
+            </div>
+            <div class="vitoria-cartao">
+                <span id="vitoria-mota" class="mota" aria-hidden="true"></span>
+                <p id="texto-vitoria"></p>
+                <p id="vitoria-detalhe"></p>
+            </div>
             <form method="dialog">
                 <button type="submit" class="btn-fechar botao">Voltar ao Menu</button>
             </form>

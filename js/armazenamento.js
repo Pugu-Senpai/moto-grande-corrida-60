@@ -1,7 +1,9 @@
 const CHAVE_VITORIA = "mgc60-vitorias";
 const CHAVE_CORRIDA = "mgc60-corrida";
 const CHAVE_TEMA = "mgc60-tema";
+const CHAVE_SOM = "mgc60-som";
 
+//VITORIA
 export function lerVitorias() {
     const vitoria = localStorage.getItem(CHAVE_VITORIA);
     if (!vitoria) {
@@ -16,6 +18,7 @@ export function guardarVitorias(vitoria) {
     localStorage.setItem(CHAVE_VITORIA, JSON.stringify(novaVitorias));
 }
 
+//CORRIDA
 export function lerCorrida() {
     const corrida = sessionStorage.getItem(CHAVE_CORRIDA);
     if (!corrida) {
@@ -36,6 +39,7 @@ export function apagarVitorias() {
     localStorage.removeItem(CHAVE_VITORIA);
 }
 
+//TEMA
 export function guardarTema(tema) {
     localStorage.setItem(CHAVE_TEMA, JSON.stringify(tema));
 }
@@ -46,4 +50,17 @@ export function lerTema() {
         return null;
     }
     return JSON.parse(tema);
+}
+
+//SOM
+export function guardarSom(configuracao) {
+    localStorage.setItem(CHAVE_SOM, JSON.stringify(configuracao));
+}
+
+export function lerSom() {
+    const som = localStorage.getItem(CHAVE_SOM);
+    if (!som) {
+        return null;
+    }
+    return JSON.parse(som);
 }
