@@ -1,5 +1,6 @@
 const CHAVE_VITORIA = "mgc60-vitorias";
 const CHAVE_CORRIDA = "mgc60-corrida";
+const CHAVE_TEMA = "mgc60-tema";
 
 export function lerVitorias() {
     const vitoria = localStorage.getItem(CHAVE_VITORIA);
@@ -33,4 +34,16 @@ export function apagarCorrida() {
 
 export function apagarVitorias() {
     localStorage.removeItem(CHAVE_VITORIA);
+}
+
+export function guardarTema(tema) {
+    localStorage.setItem(CHAVE_TEMA, JSON.stringify(tema));
+}
+
+export function lerTema() {
+    const tema = localStorage.getItem(CHAVE_TEMA);
+    if (!tema) {
+        return null;
+    }
+    return JSON.parse(tema);
 }

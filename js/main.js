@@ -12,6 +12,9 @@ import { lerVitorias, guardarVitorias, lerCorrida, guardarCorrida,
     apagarCorrida, apagarVitorias } from "./armazenamento.js";
 import { desenharClassificacao } from "./classificacao.js";
 import { tirarCarta } from "./cartas.js";
+import { alternarTema, aplicarTemaGuardado } from "./tema.js";
+
+aplicarTemaGuardado();
 
 const dados = await carregarDados();
 const CASA_DESPISTE = 2;
@@ -32,6 +35,7 @@ const btnVoltar = document.getElementById("btn-voltar");
 const btnDado = document.getElementById("btn-dado");
 const btnSair = document.getElementById("btn-sair");
 const btnLimparClassificacao = document.getElementById("btn-limpar-classificacao");
+const btnTema = document.getElementById("btn-tema");
 
 const radioJogadores = document.querySelectorAll('input[name="num-jogadores"]');
 const paragrafoErro = document.getElementById("erro-formulario");
@@ -44,10 +48,16 @@ const janelaVitoria = document.getElementById("vitoria");
 const janelaOpcoes = document.getElementById("opcoes");
 const mensagem = document.getElementById("mensagem");
 const mensagemOpcoes = document.getElementById("mensagem-opcoes");
+const janelaDadoCurva = document.getElementById("janela-dado-curva");
+const caixaDadoCurva = document.getElementById("dado-curva");
 
 
 function mostrarVez() {
-    vezJogador.textContent = `Vez de: ${obterPilotoDaVez().nome}`;
+    const piloto = obterPilotoDaVez();
+    vezJogador.innerHTML = `
+        <span class="mota" style="--cor-mota: ${piloto.cor}; --cor-placa: ${piloto.placa};"></span>
+        <span>Vez de <strong>${piloto.nome}</strong></span>
+    `;
 }
 
 function mostrarMensagem(texto) {
@@ -61,7 +71,7 @@ function mostrarVolta() {
 function mostrarCorrida() {
     btnDado.disabled = false;
     btnSair.disabled = false;
-    numDado.textContent = "";
+    numDado.textContent = "-";
     mostrarVez();
     mostrarVolta();
     desenharPista(dados.casas);
@@ -84,21 +94,32 @@ async function recuarCasas(casas) {
     }
 }
 
-async function animarDado(resultadoFinalDado) {
+async function animarDado(elementoDado, resultadoFinalDado) {
     let pausa = PAUSA_INICIAL_DADO;
     let lado = 1;
     const angulo = MOVIMENTO_REDUZIDO ? 0 : ANGULO_LADO;
     for (let i = 0; i < VEZES_DADO; i++) {
         const aleatorioDado = lancarDado();
-        numDado.textContent = aleatorioDado;
-        numDado.style.transition = `transform ${pausa}ms`;
-        numDado.style.transform = `rotate(${angulo * lado}deg)`;
+        elementoDado.textContent = aleatorioDado;
+        elementoDado.style.transition = `transform ${pausa}ms`;
+        elementoDado.style.transform = `rotate(${angulo * lado}deg)`;
         lado = lado * TROCAR_LADO;
         await esperar(pausa);
         pausa += AUMENTO_PAUSA;
     }
-    numDado.style.transform = "rotate(0deg)";
-    numDado.textContent = resultadoFinalDado;
+    elementoDado.style.transform = "rotate(0deg)";
+    elementoDado.textContent = resultadoFinalDado;
+}
+
+async function lancarDadoCurva() {
+    const resultadoDadoCurva = lancarDado();
+    caixaDadoCurva.textContent = "-";
+    janelaDadoCurva.showModal();
+    await esperar(PAUSA_DADO);
+    await animarDado(caixaDadoCurva, resultadoDadoCurva);
+    await esperar(PAUSA_DADO);
+    janelaDadoCurva.close();
+    return resultadoDadoCurva;
 }
 
 btnIniciar.addEventListener("click", () => {
@@ -145,7 +166,7 @@ btnDado.addEventListener("click", async () => {
     mostrarMensagem("");
     const resultadoDado = lancarDado();
     let curvaPerfeita = false;
-    await animarDado(resultadoDado);
+    await animarDado(numDado, resultadoDado);
     await esperar(PAUSA_DADO);
     for (let i = 1; i <= resultadoDado; i++) {
         avancarPilotoDaVez(dados.casas.length);
@@ -156,7 +177,7 @@ btnDado.addEventListener("click", async () => {
         //CURVA EVENTO
         if (casaAtual().tipo === "C" && !curvaPerfeita) {
             await esperar(PAUSA_ANTES_AVISO);
-            const dadoCurva = lancarDado();
+            const dadoCurva = await lancarDadoCurva();
             //DESPISTE
             if (dadoCurva === 1) {
                 mostrarMensagem(`${obterPilotoDaVez().nome} teve um DESPISTE!`);
@@ -234,6 +255,10 @@ btnLimparClassificacao.addEventListener("click", () => {
         apagarVitorias();
         mensagemOpcoes.textContent = "Lista classificações eliminada!";
     }
+});
+
+btnTema.addEventListener("click", () => {
+    alternarTema();
 });
 
 janelaOpcoes.addEventListener("close", () => {

@@ -12,6 +12,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kaushan+Script&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="ecra-loading" class="ecra-loading" role="status" aria-live="polite">
+        <img class="loading-titulo" src="./assets/img/titulo_jogo_claro.png" alt="Moto Grande Corrida '60">
+        <div class="loading-pista" aria-hidden="true">
+            <span class="mota" style="--cor-mota: #CC513B; --cor-placa: #F4E7C3;"></span>
+        </div>
+        <p class="loading-texto">A aquecer os motores...</p>
+    </div>
     <div class="aviso-rodar">
         <p>Roda o telemóvel para jogar</p>
         <p class="pulsar" aria-hidden="true">⟳</p>
@@ -68,8 +75,8 @@
     <!-- ECRÃ JOGO -->
     <div id="ecra-jogo" class="ecra" hidden>
         <header>
-            <h2>Moto Grande Corrida '60</h2>
-            <div id="vez-jogador">
+            <img class="imagem-titulo" src="./assets/img/titulo_jogo_claro.png" alt="Moto Grande Corrida '60">
+            <div id="vez-jogador" aria-live="polite">
 
             </div>
             <div id="volta">
@@ -84,7 +91,7 @@
         </main>
         <aside aria-label="Classificação da Corrida">
             <section aria-label="Dado">
-                <div id="numero-dado">
+                <div id="numero-dado" class="dado">
                     
                 </div>
                 <button id="btn-dado" type="button" class="botao">
@@ -117,7 +124,7 @@
         <div class="janela-conteudo">
             <h2>Regras</h2>
             <h3>Objetivo:</h3>
-            <p>Jogo de 2 a 6 pilotos. Ganha quem cruzar primeiro a meta no fim da 3.ª volta.</p>
+            <p>Jogo de 2 a 6 pilotos. Ganha quem cruzar primeiro a meta no fim da 2.ª volta.</p>
             <h3>O teu turno:</h3>
             <ol>
                 <li>Lança o dado;</li>
@@ -179,6 +186,14 @@
                         <td>Travagem brusca</td>
                         <td>Recua 3 casas</td>
                     </tr>
+                    <tr>
+                        <td>Motor afinado</td>
+                        <td>Avança 2 casas</td>
+                    </tr>
+                    <tr>
+                        <td>Público em delírio</td>
+                        <td>Avança 1 casa</td>
+                    </tr>
                 </tbody>
             </table>
             <h3>Guardar e Classificação:</h3>
@@ -194,6 +209,7 @@
         <div class="janela-conteudo">
             <h2>Opções</h2>
             <button id="btn-limpar-classificacao" type="button" class="botao">Limpar classificação</button>
+            <button id="btn-tema" type="button" class="botao" aria-pressed="false">Modo escuro</button>
             <p id="mensagem-opcoes" aria-live="polite"></p>
             <form method="dialog">
                 <button type="submit" class="btn-fechar botao">Fechar</button>
@@ -219,6 +235,13 @@
             <h2 id="aviso-titulo"></h2>
             <img id="aviso-imagem" alt="">
             <p id="aviso-texto"></p>
+        </div>
+    </dialog>
+
+    <dialog id="janela-dado-curva">
+        <div class="janela-conteudo">
+            <h2>Dado Curva</h2>
+            <div id="dado-curva" class="dado"></div>
         </div>
     </dialog>
 </body>
