@@ -32,6 +32,9 @@
     --carta-ajuda: var(--verde);
     --carta-ataque: var(--vermelho);
     --carta-evento: var(--mostarda);
+
+    /* Imagens de fundo */
+    --imagem-fundo: url(../assets/img/background.jpg);
 }
 
 :root.modo-escuro {
@@ -41,7 +44,8 @@
     --cor-contorno: var(--areia-claro);
     --cor-contorno-claro: var(--couro-sela);
     --cor-titulo: var(--vermelho-claro);
-    --cor-titulo-escuro: var(--vermelho-claro);  
+    --cor-titulo-escuro: var(--vermelho-claro); 
+    --imagem-fundo: url(../assets/img/background_dark.jpg); 
 }
 
 html {
@@ -154,7 +158,7 @@ h3 {
 /* IMAGEM FUNDO */
 
 #ecra-inicial, #ecra-configuracao {
-    background-image: url(../assets/img/background.jpg);
+    background-image: var(--imagem-fundo);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover; 
@@ -226,7 +230,7 @@ h3 {
 }
 
 main {
-    background-image: url(../assets/img/background.jpg);
+    background-image: var(--imagem-fundo);
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
@@ -892,11 +896,16 @@ select:focus-visible, input[type="radio"]:focus-visible + label {
 /* SOM */
 .controlo-som {
     display: grid;
-    grid-template-columns: auto auto 1fr 3.5rem;
+    grid-template-columns: 4.5rem auto 1fr 3.5rem;
+    margin: 0;
     align-items: center;
     gap: 0.75rem;
     margin-block: 1rem;
     font-size: 1.2rem;
+}
+
+.controlo-som + .controlo-som { 
+    margin-top: 0.75rem; 
 }
 
 .btn-icone {
@@ -954,12 +963,6 @@ select:focus-visible, input[type="radio"]:focus-visible + label {
     width: 100%;
     accent-color: var(--vermelho);
     cursor: pointer;
-}
-
-.controlo-som output {
-    font-family: "Bebas Neue", sans-serif;
-    font-size: 1.4rem;
-    text-align: right;
 }
 
 /* slider apagado quando está silenciado */
