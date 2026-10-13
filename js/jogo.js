@@ -6,7 +6,7 @@ function criarPilotos(jogadores, motas) {
     const pilotos = jogadores.map((j) => {
         const mota = motas.find((m) => m.numero === j.mota);
         return {...j, posicao: 0, volta: 1, cor: mota.cor, placa: mota.placa, corNumero: mota.corNumero};
-});
+    });
     return pilotos;
 }
 
@@ -51,12 +51,18 @@ export function restaurarCorrida(estado) {
     turno = estado.turno;
 }
 
-export function recuarPilotoDaVez(casas) {
+export function recuarPilotoDaVez(casas, totalCasas) {
     listaPilotos = listaPilotos.map((p, i) => {
         if (i !== turno) {
             return p;
         }
-        const novaPosicao = p.posicao - casas;
-        return {...p, posicao: novaPosicao};
-    });    
+        const posicaoRecuada = p.posicao - casas;
+        if (posicaoRecuada >= 0) {
+            return {...p, posicao: posicaoRecuada};
+        }
+        if (p.volta === 1) {
+            return {...p, posicao: 0};
+        }
+        return {...p, posicao: posicaoRecuada + totalCasas, volta: p.volta - 1};
+    });
 }

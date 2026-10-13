@@ -14,3 +14,9 @@ export function precarregarImagem(src) {
         img.src = src;
     });
 }
+
+export function escaparHTML(texto) {
+    const caixa = document.createElement("div");
+    caixa.textContent = texto;
+    return caixa.innerHTML;
+}

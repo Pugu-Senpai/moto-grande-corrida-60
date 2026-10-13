@@ -11,5 +11,5 @@ export function trocarEcras(id) {
     } else {
         console.warn(`O ID "${id}" não existe!`);
     } 
-};
+}
 

@@ -85,11 +85,11 @@
             <button id="btn-sair" type="button" class="botao">Sair da Corrida</button>
         </header>
         <main>
-            <section id="pista">
+            <section id="pista" aria-label="Pista">
 
             </section>
         </main>
-        <aside aria-label="Classificação da Corrida">
+        <aside aria-label="Painel da Corrida">
             <section aria-label="Dado">
                 <div id="numero-dado" class="dado">
                     
@@ -114,6 +114,11 @@
             <ol id="lista-classificacao">
                 
             </ol>
+            <div class="linha-tarik">
+                <span class="posicao">💀</span>
+                <span class="nome">Tarik</span>
+                <span class="vitorias">-17 <small>vitórias</small></span>
+            </div>
             <form method="dialog">
                 <button type="submit" class="btn-fechar botao">Fechar</button>
             </form>  
@@ -303,7 +308,7 @@
                 <button type="submit" class="btn-fechar botao" aria-label="Fechar">X</button>
             </form>
             <h2 id="aviso-titulo"></h2>
-            <img id="aviso-imagem" alt="">
+            <img id="aviso-imagem" alt="" src="./assets/img/cartas/eventos/evento_2_foto_revista.png">
             <p id="aviso-texto"></p>
         </div>
     </dialog>

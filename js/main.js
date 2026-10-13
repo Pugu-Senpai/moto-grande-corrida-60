@@ -47,8 +47,6 @@ const btnDado = document.getElementById("btn-dado");
 const btnSair = document.getElementById("btn-sair");
 const btnLimparClassificacao = document.getElementById("btn-limpar-classificacao");
 const btnTema = document.getElementById("btn-tema");
-const btnMute = document.getElementById("btn-mute");
-const sliderVolume = document.getElementById("volume");
 
 const radioJogadores = document.querySelectorAll('input[name="num-jogadores"]');
 const paragrafoErro = document.getElementById("erro-formulario");
@@ -56,7 +54,6 @@ const formulario = document.getElementById("dados-jogador");
 const numDado = document.getElementById("numero-dado");
 const vezJogador = document.getElementById("vez-jogador");
 const textoVolta = document.getElementById("volta");
-const textoVitoria = document.getElementById("texto-vitoria");
 const janelaVitoria = document.getElementById("vitoria");
 const janelaOpcoes = document.getElementById("opcoes");
 const mensagem = document.getElementById("mensagem");
@@ -70,6 +67,10 @@ const [dados] = await Promise.all([
     esperar(TEMPO_MINIMO_LOADING),
     ...IMAGENS_JOGO.map(precarregarImagem),
 ]);
+if (!dados) {
+    ecraLoading.querySelector(".loading-texto").textContent = "Erro ao carregar o jogo. Recarrega a página.";
+    throw new Error("Não foi possível carregar o dados.json");
+}
 
 ecraLoading.classList.add("a-sair");
 ecraLoading.addEventListener("transitionend", () => ecraLoading.remove(), { once: true });
@@ -78,8 +79,9 @@ function mostrarVez() {
     const piloto = obterPilotoDaVez();
     vezJogador.innerHTML = `
         <span class="mota" style="--cor-mota: ${piloto.cor}; --cor-placa: ${piloto.placa};"></span>
-        <span>Vez de <strong>${piloto.nome}</strong></span>
+        <span>Vez de <strong></strong></span>
     `;
+    vezJogador.querySelector("strong").textContent = piloto.nome;
 }
 
 function mostrarMensagem(texto) {
@@ -111,7 +113,7 @@ function casaAtual() {
 
 async function recuarCasas(casas) {
     for (let i = 0; i < casas; i++) {
-        recuarPilotoDaVez(RECUAR);
+        recuarPilotoDaVez(RECUAR, dados.casas.length);
         desenharPecas(obterPilotos(), dados.casas);
         tocarEfeito("mover");
         await esperar(PAUSA_MOVIMENTO);        

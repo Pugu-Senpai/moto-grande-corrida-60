@@ -20,13 +20,17 @@ export function abrirJanela(id) {
 }
 
 dialogs.forEach((d) => {
+    d.addEventListener("close", () => {
+        tocarEfeito("papel");
+    });
+    if (d.id === "janela-dado-curva") {
+        d.addEventListener("cancel", (evento) => evento.preventDefault());
+        return;
+    }
     d.addEventListener("click", (evento) => {
         if (evento.target === d) {
             d.close();
         }
-    });
-    d.addEventListener("close", () => {
-        tocarEfeito("papel");
     });
 });
 
