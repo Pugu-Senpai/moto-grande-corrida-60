@@ -13,6 +13,7 @@ export function abrirJanela(id) {
     if (elemento) {
         tocarEfeito("papel");
         elemento.showModal();
+        elemento.scrollTop = 0;
     } else {
         console.warn(`O ID "${id}" não existe!`);
     } 
