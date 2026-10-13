@@ -261,6 +261,7 @@ main {
     position: relative;
     width: min(100cqw, 100cqh * 5000 / 3734);
     aspect-ratio: 5000 / 3734;
+    container-type: inline-size;
     background-image: url(../assets/img/pista.svg), url(../assets/img/fundo_pista.jpg);
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -280,7 +281,8 @@ main {
     border-style: solid;
     border-width: 2px;
     border-color: var(--cinza-carvao);
-    border-radius: 1.5rem;
+    border-radius: 25%;
+    font-size: clamp(0.55rem, 1.8cqw, 1.1rem);
     box-shadow: 0 2px 4px rgb(31 29 25 / 0.4);
 }
 
@@ -854,19 +856,39 @@ select:focus-visible, input[type="radio"]:focus-visible + label {
 
 /* JANELA AVISO EVENTO/CURVA */
 #aviso {
-    max-width: 26rem;
+    max-width: 40rem;
 }
 
 #aviso .janela-conteudo {
-    text-align: center;
+    position: relative;
+    display: grid;
+    grid-template-columns: 45% 1fr;
+    grid-template-areas:
+        "imagem titulo"
+        "imagem texto";
+    align-items: center;
+    gap: 0.5rem 1.5rem;
+    padding: 1.25rem;
+    text-align: left;
+}
+
+#aviso form {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
 }
 
 #aviso h2 {
-    font-size: 2rem;
-    margin: 0.5rem;
+    grid-area: titulo;
+    align-self: end;
+    margin: 0;
+    padding-right: 2.5rem;
+    font-size: 2.2rem;
+    text-align: left;
 }
 
 #aviso img {
+    grid-area: imagem;
     display: block;
     width: 100%;
     aspect-ratio: 4 / 3;
@@ -878,7 +900,10 @@ select:focus-visible, input[type="radio"]:focus-visible + label {
 }
 
 #aviso p {
-    font-size: 1.2rem;
+    grid-area: texto;
+    align-self: start;
+    margin: 0;
+    font-size: 1.25rem;
 }
 
 #aviso .btn-fechar {
@@ -900,7 +925,6 @@ select:focus-visible, input[type="radio"]:focus-visible + label {
     margin: 0;
     align-items: center;
     gap: 0.75rem;
-    margin-block: 1rem;
     font-size: 1.2rem;
 }
 
@@ -965,18 +989,7 @@ select:focus-visible, input[type="radio"]:focus-visible + label {
     cursor: pointer;
 }
 
-/* slider apagado quando está silenciado */
-#btn-mute[aria-pressed="true"] + #volume {
-    opacity: 0.45;
-}
-
-#volume {
-    width: 100%;
-    accent-color: var(--vermelho);
-    cursor: pointer;
-}
-
-#valor-volume {
+.controlo-som output {
     font-family: "Bebas Neue", sans-serif;
     font-size: 1.4rem;
     text-align: right;
@@ -1179,27 +1192,37 @@ select:focus-visible, input[type="radio"]:focus-visible + label {
 
 /* JANELA VITÓRIA */
 #vitoria {
-    max-width: 30rem;
+    max-width: 44rem;
 }
 
 #vitoria .janela-conteudo {
     position: relative;
+    display: grid;
+    grid-template-columns: 40% 1fr;
+    grid-template-areas:
+        "imagem titulo"
+        "imagem cartao"
+        "imagem botao";
+    align-items: center;
+    gap: 0.5rem 1.5rem;
     text-align: center;
 }
 
 #vitoria h2 {
-    margin-bottom: 0.5rem;
+    grid-area: titulo;
+    margin: 0;
 }
 
 #vitoria form {
+    grid-area: botao;
     text-align: center;
 }
 
 /* imagem com brilho */
 .vitoria-imagem {
+    grid-area: imagem;
     position: relative;
-    display: grid;
-    place-items: center;
+    display: block;
 }
 
 .vitoria-imagem::before {
@@ -1213,8 +1236,10 @@ select:focus-visible, input[type="radio"]:focus-visible + label {
 .vitoria-imagem img {
     position: relative;
     display: block;
-    width: min(16rem, 65%);
+    width: 100%;
     height: auto;
+    max-height: 70vh;
+    object-fit: contain;
     animation: entrar 0.7s cubic-bezier(0.2, 1.4, 0.4, 1) both;
 }
 
@@ -1233,7 +1258,8 @@ select:focus-visible, input[type="radio"]:focus-visible + label {
     justify-items: center;
     gap: 0.25rem;
     max-width: 22rem;
-    margin: 1rem auto;
+    grid-area: cartao;
+    margin: 0 auto;
     padding: 0.75rem 1rem;
     background-color: var(--cinza-carvao);
     color: var(--creme-claro);
@@ -1317,6 +1343,196 @@ select:focus-visible, input[type="radio"]:focus-visible + label {
 
     .aviso-rodar p {
         margin: 0;
+    }
+}
+
+/* TELEMÓVEL DEITADO (ecrãs baixos) */
+@media (max-height: 32rem) {
+
+    /* MENU INICIAL */
+    .barra-titulo {
+        width: min(60%, 34rem);
+        margin-top: 0.75rem;
+    }
+
+    .inicial-nav-conteudo {
+        flex-wrap: nowrap;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+        padding-inline: 1rem;
+    }
+
+    .inicial-botao {
+        min-width: 0;
+        padding: 0.2rem 0.9rem;
+        border-width: 0.2rem;
+        border-radius: 0.75rem;
+        font-size: 1.15rem;
+    }
+
+        /* ECRÃ DE JOGO */
+    #ecra-jogo {
+        height: 100dvh;
+        grid-template-columns: 1fr 11rem;
+    }
+
+    #ecra-jogo > main {
+        padding: 0.4rem;
+    }
+
+    /* cabeçalho numa só linha */
+    header {
+        flex-wrap: nowrap;
+        gap: 0.5rem;
+        padding: 0.25rem 0.75rem;
+    }
+
+    .imagem-titulo {
+        height: 1.6rem;
+        min-width: 0;
+        flex-shrink: 1;
+    }
+
+    #vez-jogador {
+        gap: 0.4rem;
+        padding: 0.15rem 0.6rem;
+        font-size: 1rem;
+        border-width: 1px;
+    }
+
+    #vez-jogador .mota {
+        width: 2.5rem;
+    }
+
+    #volta {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
+    #ecra-jogo .botao {
+        min-width: 0;
+        padding: 0.15rem 0.6rem;
+        border-width: 0.15rem;
+        border-radius: 0.6rem;
+        font-size: 0.95rem;
+    }
+
+    /* aside mais estreito e compacto */
+    aside {
+        padding: 0.5rem;
+        gap: 0.5rem;
+    }
+
+    aside > section {
+        gap: 0.4rem;
+    }
+
+    .dado {
+        width: 3.5rem;
+        border-width: 3px;
+        border-radius: 0.6rem;
+        font-size: 2rem;
+    }
+
+    #mensagem {
+        min-height: 2rem;
+        margin: 0;
+        font-size: 0.85rem;
+    }
+
+    aside h2 {
+        font-size: 1.2rem;
+    }
+
+    #lista-posicoes {
+        gap: 0.25rem;
+    }
+
+    #lista-posicoes li {
+        grid-template-columns: 1.1rem 2.2rem 1fr auto;
+        gap: 0.3rem;
+        padding: 0.15rem 0.35rem;
+        border-radius: 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    #lista-posicoes .posicao {
+        font-size: 1rem;
+    }
+
+    #lista-posicoes li:first-child {
+        grid-template-columns: 1.1rem 2.6rem 1fr auto;
+        padding: 0.25rem 0.35rem;
+        font-size: 1rem;
+    }
+
+        /* JANELAS EM GERAL */
+    dialog {
+        max-height: 92dvh;
+    }
+
+    .janela-conteudo {
+        padding: 0.75rem;
+    }
+
+    dialog h2 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    dialog .botao {
+        padding: 0.15rem 0.75rem;
+        border-width: 0.15rem;
+        font-size: 1.1rem;
+    }
+
+        /* AVISO */
+    #aviso {
+        max-width: 34rem;
+    }
+
+    #aviso .janela-conteudo {
+        gap: 0.25rem 1rem;
+        padding: 0.75rem;
+    }
+
+    #aviso form {
+        top: 0.4rem;
+        right: 0.4rem;
+    }
+
+    #aviso h2 {
+        font-size: 1.6rem;
+    }
+
+    #aviso p {
+        font-size: 1.05rem;
+    }
+
+    /* VITÓRIA */
+    #vitoria {
+        max-width: 34rem;
+    }
+
+    #vitoria .janela-conteudo {
+        gap: 0.25rem 1rem;
+    }
+
+    .vitoria-imagem img {
+        max-height: 65dvh;
+    }
+
+    .vitoria-cartao {
+        padding: 0.5rem 0.75rem;
+    }
+
+    #vitoria-mota {
+        width: 3.5rem;
+    }
+
+    #texto-vitoria {
+        font-size: 1.8rem;
     }
 }
 
