@@ -6,7 +6,7 @@ Jogo de tabuleiro de corrida de motas clássicas, inspirado nas corridas dos ano
 
 
 
-Jogar online: https://pugu-senpai.github.io/Projeto\_2/
+Jogar online: https://pugu-senpai.github.io/moto-grande-corrida-60/
 
 
 
