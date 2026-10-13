@@ -1,6 +1,6 @@
 let listaPilotos = [];
 let turno = 0;
-export const TOTAL_VOLTAS = 1;
+export const TOTAL_VOLTAS = 2;
 
 function criarPilotos(jogadores, motas) {
     const pilotos = jogadores.map((j) => {
