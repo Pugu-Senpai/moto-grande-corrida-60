@@ -754,6 +754,25 @@ select:focus-visible, input[type="radio"]:focus-visible + label {
     gap: 1rem;
 }
 
+.linha-mota {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.linha-mota select {
+    flex: 1;
+    min-width: 0;
+}
+
+.mota-escolhida {
+    position: relative;
+    display: block;
+    flex-shrink: 0;
+    width: 4rem;
+    aspect-ratio: 2752 / 1536;
+}
+
 /* SELETOR NUMERO JOGADORES */
 #ecra-configuracao input[type="radio"] + label {
     border: none;
