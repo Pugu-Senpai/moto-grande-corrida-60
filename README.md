@@ -12,7 +12,6 @@ Jogar online: https://pugu-senpai.github.io/moto-grande-corrida-60/
 
 
 
-\---
 
 
 
@@ -49,15 +48,6 @@ Jogar online: https://pugu-senpai.github.io/moto-grande-corrida-60/
 
 
 
-| Resultado | Efeito |
-
-|---|---|
-
-| 1 | \*\*Despiste\*\*: paras e recuas 2 casas |
-
-| 2 a 5 | \*\*Curva normal\*\*: continuas o movimento |
-
-| 6 | \*\*Curva perfeita\*\*: não precisas de lançar nas próximas curvas desse turno |
 
 
 
@@ -71,7 +61,6 @@ Jogar online: https://pugu-senpai.github.io/moto-grande-corrida-60/
 
 
 
-\---
 
 
 
@@ -105,7 +94,6 @@ Jogar online: https://pugu-senpai.github.io/moto-grande-corrida-60/
 
 
 
-\---
 
 
 
@@ -129,7 +117,6 @@ Sem bibliotecas externas. Fontes do Google Fonts: Bebas Neue, Oswald e Kaushan S
 
 
 
-\---
 
 
 
@@ -193,7 +180,6 @@ moto-grande-corrida-60/
 
 
 
-\---
 
 
 
@@ -237,7 +223,6 @@ moto-grande-corrida-60/
 
 
 
-\---
 
 
 
@@ -257,7 +242,6 @@ O jogo usa ES Modules e "fetch", por isso não funciona a abrir o "index.html" d
 
 
 
-\---
 
 
 
@@ -275,7 +259,6 @@ O jogo usa ES Modules e "fetch", por isso não funciona a abrir o "index.html" d
 
 
 
-\---
 
 
 
