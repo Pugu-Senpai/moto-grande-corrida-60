@@ -1,3 +1,5 @@
+import { escaparHTML } from "./utils.js";
+
 const listaPosicoes = document.getElementById("lista-posicoes");
 
 function calcularProgresso(piloto, totalCasas) {
@@ -13,7 +15,7 @@ export function desenharPosicoes(pilotos, totalCasas) {
     listaPosicoes.innerHTML = porProgresso.map((p, i) => `<li>
     <span class="posicao">${i + 1}.</span>
     <span class="mota" style="--cor-mota: ${p.cor}; --cor-placa: ${p.placa};"></span>
-    <span class="nome">${p.nome}</span>
+    <span class="nome">${escaparHTML(p.nome)}</span>
     <span class="volta">V${p.volta}</span>
     </li>`).join("");
 }

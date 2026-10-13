@@ -1,3 +1,5 @@
+import { escaparHTML } from "./utils.js";
+
 const listaClassificacao = document.getElementById("lista-classificacao");
 
 const LUGARES = ["ouro", "prata", "bronze"];
@@ -29,7 +31,7 @@ function criarLinha(jogador, i) {
 
     return `<li class="${classe}">
         ${marca}
-        <span class="nome">${jogador.nome}</span>
+        <span class="nome">${escaparHTML(jogador.nome)}</span>
         <span class="vitorias">${jogador.vitorias} <small>${palavra}</small></span>
     </li>`;
 }
