@@ -29,10 +29,27 @@ function criarBlocoJogador(numero, motas) {
     labelMota.textContent = "Mota";
     select.id = idSelect;
     select.name = idSelect;
-    labelMota.htmlFor = idSelect; 
+    labelMota.htmlFor = idSelect;
+    
+    //MOTA ESCOLHIDA
+    const motaEscolhida = document.createElement("span");
+    motaEscolhida.classList.add("mota", "mota-escolhida");
+    motaEscolhida.setAttribute("aria-hidden", "true");
+
+    function mostrarMotaEscolhida() {
+        const mota = motas.find((m) => m.numero === Number(select.value));
+        motaEscolhida.style.setProperty("--cor-mota", mota.cor);
+        motaEscolhida.style.setProperty("--cor-placa", mota.placa);
+    }
+    mostrarMotaEscolhida();
+    select.addEventListener("change", mostrarMotaEscolhida);
+
+    const linhaMota = document.createElement("div");
+    linhaMota.classList.add("linha-mota");
+    linhaMota.append(select, motaEscolhida);
     
     //Montar Bloco
-    fieldSet.append(legend, labelNome, inputNome, labelMota, select);
+    fieldSet.append(legend, labelNome, inputNome, labelMota, linhaMota);
     listaJogadores.append(fieldSet);
 }
 
