@@ -29,6 +29,7 @@
 
     /* Imagens de fundo */
     --imagem-fundo: url(../assets/img/background.jpg);
+    --imagem-aside: url(../assets/img/fundo_aside_claro.jpg);
 }
 
 :root.modo-escuro {
@@ -38,7 +39,8 @@
     --cor-contorno: var(--areia-claro);
     --cor-contorno-claro: var(--couro-sela);
     --cor-titulo-escuro: var(--vermelho-claro); 
-    --imagem-fundo: url(../assets/img/background_dark.jpg); 
+    --imagem-fundo: url(../assets/img/background_dark.jpg);
+    --imagem-aside: url(../assets/img/fundo_aside_escuro.jpg);
 }
 
 html {
@@ -346,7 +348,11 @@ header {
     gap: 1rem;
     padding: 0.5rem 1.5rem;
     background-color: var(--cinza-carvao);
+    background-image: url(../assets/img/fundo_header.jpg);
+    background-size: cover;
+    background-position: center;
     color: var(--creme-claro);
+    border-bottom: 0.2rem solid var(--cor-contorno);
 }
 
 .imagem-titulo {
@@ -400,13 +406,16 @@ header {
 
 /* ASIDE */
 aside {
-    background-color: var(--cor-fundo);
     border-left: 0.2rem solid var(--cor-contorno);
     padding: 1rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
     overflow-y: auto;
+    background-color: var(--cor-fundo);
+    background-image: var(--imagem-aside);
+    background-size: cover;
+    background-position: center;
 }
 
 aside > section {
